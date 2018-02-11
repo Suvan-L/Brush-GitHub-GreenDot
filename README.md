@@ -1,4 +1,4 @@
-# 刷 GitHub 小绿点工具
+# 刷 GitHub 小绿点工具 （v 1.1）
  利用 Shell 脚本编写，可自定义图案，刷出想要的形状
 
  ## 前言
@@ -12,38 +12,36 @@
 - 扩展：那能不能刷出不同形状的图案？
 
 ## 实现思路
-1. 选定一种实现手段（虽然最熟悉 java，但这种小的 DEMO 还是用脚本语言比较合适）
-  - 经过 1min 钟的深思熟虑，选择了 Shell（脚本语言都不是很熟，都得学习哈哈)
-2. 编程思维理解步骤
-  - 初始化仓库
-  - 设置初始系统时间
-    - 硬件时间也要同步设置
-  - 循环
-    - 考虑用一个文件，来设计图片类型
-    - 逐行读取，| 分隔字符串
-    - 每个字符串代表循环次数（提交次数）
-    - 修改系统时间
-3. 动手实现
+![代码思路](./image/script-idea.png)
 
 ## 目录说明
 ```
 Bush-GitHub-GreenDot
-│  BashGitHubGreenDotScript.sh   	[Shell 脚本]
-│  config.txt					 	[设计图片]
+│  update.data						[commit 更新文件]
+│  tmp.txt							[临时文件（执行完自动删除）]
+│  BrushGitHubGreenDotScript.sh   	[Shell 脚本]
+│  picture.txt					 	[设计图片]
 │  README.md					 	[说明书]
 │
 └─image
-        effect.png					[效果图]
-        FinishedLocalDirectory.png  [执行完本地目录图]
-        workingProcess1.png  		[执行状态1]
-        workingProcess2.png			[执行状态2]
+        effect1.png					[效果图 1]
+        effect2.png					[效果图 2]
+        effect3.png					[效果图 3]
+        design-effect2.png			[设计图 2]
+        design-effect3.png			[设计图 3]
+        workingProcess1.png  		[执行状态 1]
+        workingProcess2.png			[执行状态 2]
+        attention2.png				[注意事项 2]
 ```
 
 ## 效果展示
-![效果图](image/effect.png)
-![执行完本地目录图](image/FinishedLocalDirectory.png)
-![执行状态1](image/workingProcess1.png)
-![执行状态2](image/workingProcess2.png)
+![效果图 1](image/effect1.png)
+![设计图 2](image/design-effect2.png)
+![效果图 2](image/effect2.png)
+![设计图 3](image/design-effect3.png)
+![效果图 3](image/effect3.png)
+![脚本运行过程 1](image/workingProcess1.png)
+![脚本运行过程 2](image/workingProcess2.png)
 
 
 ## 需要环境
@@ -67,6 +65,7 @@ Bush-GitHub-GreenDot
 
 ## 注意
 1. 如果中途想停止脚本，在命令行界面按`Ctrl + c`
-2. 执行完脚本后，系统时间会回到“过去”，需重新调整回来
-3. 该脚本默认是 "2014-12-28 00:00:00" 开始，
-4. 可在 config.txt 内设计图案，每个数字代表 1 天 n 次提交（从左到右，水平递增）（不同的提交会造成小绿点颜色深浅的不同）
+2. 该脚本默认是 "2014-12-28 00:00:00" 开始，若需调整，可调整 'BrushGitHubGreenDotScript.sh' 文件内 `time="2014-12-28";` 需注意格式 ”年-月-日“ ，建议下图所示设置为前一天，保证与设计效果相符
+  - ![注意事项 2](image/attention2.png)
+3. 可在 picture计图案，每个数字代表提交次数，时间变化（左 -> 右，上 -> 下 递增）（不同的提交会造成小绿点颜色深浅的不同）
+4. 可能提交至 Github 不会太快出现效果，请耐心等待 GitHub 服务器响应（约 1 分钟后），可在个人首页看到图案
